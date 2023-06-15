@@ -1,83 +1,111 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Stars from './Stars';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Stars from "./Stars";
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
       {/* TODO: make it dynamic */}
-      <Link color="inherit" href="https://mkhalouk.com/" target="_blank" rel="noopener noreferrer">
+      <Link
+        color="inherit"
+        href="https://mkhalouk.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Picopost
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-// TODO: remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#E0E1E7", // this will set the primary color to red
+    },
+    text: {
+      primary: "#ffffff", // this will set the primary text color to white
+      secondary: "#aaaaaa" // this will set the secondary text color to light grey
+    }
+  }
+});
 
-const defaultTheme = createTheme();
 
 export default function Authentication() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      email: data.get("email"),
+      password: data.get("password"),
     });
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Stars />
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Grid container component="main" sx={{ height: "100vh", width: "70%", margin: "auto" }}>
         <CssBaseline />
         <Grid
           item
-          xs={false}
-          sm={4}
-          md={7}
+          xs={12}
+          sm={8}
+          md={5}
+          component={Paper}
+          elevation={6}
+          square
           sx={{
-            backgroundImage: 'url(https://res.cloudinary.com/mkhalouk/image/upload/v1686837209/picopost/logo_picopost2_lb2xvz.png)',
-            backgroundRepeat: 'no-repeat',
-            // backgroundColor: (t) =>
-            //   t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            // backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            bgcolor: "#1A202C",
+            borderRadius: "20px",
+            m: "auto",
+            height: "70%",
           }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square sx={{ bgcolor: 'grey.400', width: '50%', height: '50%', borderRadius: '20px' }}>
+        >
           <Box
             sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            <Box sx={{ m: 1 }}>
+              <img
+                src="https://res.cloudinary.com/mkhalouk/image/upload/v1686837209/picopost/logo_picopost2_lb2xvz.png"
+                alt="Picopost Logo"
+                style={{ height: "100px", width: "auto", backgroundColor: "#1A202C", borderRadius: "10px" }}
+              />
+            </Box>
+
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 1, width: "50%" }}
+            >
               <TextField
                 margin="normal"
                 required
