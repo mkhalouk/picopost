@@ -16,6 +16,7 @@ import Stars from "./Stars";
 function Copyright(props) {
   return (
     <Typography
+      paddingBottom={2}
       variant="body2"
       color="text.secondary"
       align="center"
@@ -44,11 +45,10 @@ const defaultTheme = createTheme({
     },
     text: {
       primary: "#ffffff", // this will set the primary text color to white
-      secondary: "#aaaaaa" // this will set the secondary text color to light grey
-    }
-  }
+      secondary: "#aaaaaa", // this will set the secondary text color to light grey
+    },
+  },
 });
-
 
 export default function Authentication() {
   const handleSubmit = (event) => {
@@ -63,7 +63,11 @@ export default function Authentication() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Stars />
-      <Grid container component="main" sx={{ height: "100vh", width: "70%", margin: "auto" }}>
+      <Grid
+        container
+        component="main"
+        sx={{ height: "100vh", width: "70%", margin: "auto" }}
+      >
         <CssBaseline />
         <Grid
           item
@@ -77,7 +81,7 @@ export default function Authentication() {
             bgcolor: "#1A202C",
             borderRadius: "20px",
             m: "auto",
-            height: "70%",
+            height: "auto",
           }}
         >
           <Box
@@ -93,7 +97,12 @@ export default function Authentication() {
               <img
                 src="https://res.cloudinary.com/mkhalouk/image/upload/v1686837209/picopost/logo_picopost2_lb2xvz.png"
                 alt="Picopost Logo"
-                style={{ height: "100px", width: "auto", backgroundColor: "#1A202C", borderRadius: "10px" }}
+                style={{
+                  height: "100px",
+                  width: "auto",
+                  backgroundColor: "#1A202C",
+                  borderRadius: "10px",
+                }}
               />
             </Box>
 
@@ -110,12 +119,21 @@ export default function Authentication() {
                 margin="normal"
                 required
                 fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoFocus
+              />
+              {/* <TextField
+                margin="normal"
+                required
+                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
-              />
+              /> */}
               <TextField
                 margin="normal"
                 required

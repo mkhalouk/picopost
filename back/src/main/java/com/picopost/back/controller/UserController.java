@@ -11,21 +11,21 @@ import java.net.URISyntaxException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     // Get all users
-    @GetMapping("/users")
+    @GetMapping("/all")
     public ResponseEntity<Iterable<User>> getUsers() {
         Iterable<User> users = userService.getUsers();
         return ResponseEntity.ok(users);
     }
 
     // Get a user by id
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") final Long id) {
         Optional<User> user = userService.getUser(id);
         if (user.isPresent()) {
@@ -36,21 +36,21 @@ public class UserController {
     }
 
     // Create a new user
-    @PostMapping("/users")
+    @PostMapping("/new")
     public ResponseEntity<User> createUser(@RequestBody User user) throws URISyntaxException {
         User newUser = userService.saveUser(user);
         return ResponseEntity.created(new URI("/api/users/" + newUser.getId())).body(newUser);
     }
 
     // Update a user
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
         User updatedUser = userService.updateUser(id, user);
         return updatedUser != null ? ResponseEntity.ok(updatedUser) : ResponseEntity.notFound().build();
     }
 
     // Delete a user
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
