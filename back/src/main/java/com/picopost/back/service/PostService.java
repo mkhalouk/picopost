@@ -1,5 +1,7 @@
 package com.picopost.back.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,8 @@ public class PostService {
     return postRepository.findAll();
   }
 
-  public Post getPost(Long id) {
-    return postRepository.findById(id).orElse(null);
+  public Optional<Post> getPost(Long id) {
+    return postRepository.findById(id);
   }
 
   public Post savePost(Post post) {
